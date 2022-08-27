@@ -1,6 +1,7 @@
 let min = 1, max = 10;
-let winNum = 5;
+let winNum = Math.floor(Math.random()*(max-min+1)+min);
 let guessesRemaining = 3;
+console.log(winNum);
 
 const minElement = document.querySelector('.min-num');
 const maxElement = document.querySelector('.max-num');
@@ -57,8 +58,8 @@ function gameOver(won, msg) {
     guessBtn.className += 'play-again';
 }
 
-function playAgain(e){
-    if(e.target.className === 'play-again'){
+function playAgain(e) {
+    if (e.target.className === 'play-again') {
         window.location.reload();
     }
 }
