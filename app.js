@@ -7,11 +7,13 @@ const maxElement = document.querySelector('.max-num');
 const guessInput = document.getElementById('guess-input');
 const guessBtn = document.getElementById('guess-submit');
 const messageElement = document.getElementById('message');
+const gameWrapper = document.getElementById('game');
 
 minElement.textContent = min;
 maxElement.textContent = max;
 
 guessBtn.addEventListener('click', validateResult);
+gameWrapper.addEventListener('mousedown', playAgain);
 
 function validateResult() {
     let inputVal = parseInt(guessInput.value);
@@ -31,13 +33,14 @@ function validateResult() {
             }
             else {
                 guessInput.style.borderBlockColor = 'red';
+                guessInput.value = '';
                 setMessage(`Incorrect! You have ${guessesRemaining} guess(es) remaining`, 'red');
             }
 
         }
 
     }
-    
+
 }
 
 function setMessage(msg, clr) {
@@ -50,4 +53,12 @@ function gameOver(won, msg) {
     guessInput.disabled = true;
     guessInput.style.borderBlockColor = clr;
     setMessage(msg, clr);
+    guessBtn.value = 'Play Again';
+    guessBtn.className += 'play-again';
+}
+
+function playAgain(e){
+    if(e.target.className === 'play-again'){
+        window.location.reload();
+    }
 }
